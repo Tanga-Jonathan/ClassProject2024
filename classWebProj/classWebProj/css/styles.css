@@ -27,3 +27,6 @@ h1{
 }
 .return:hover{background-color: blue;
 color: blue;}
+.floatright{
+    float: right ; border-image-width: 150px;
+}
