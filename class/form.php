@@ -8,10 +8,10 @@
 <body bgcolor="grey">
 <center>
     <h1 style="color: blue; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; border: violet; border-radius: 2cm;">Registration</h1>
-    <form action="con_to_db.php" method="get">
+    <form action="phpcon.php" method="post">
         <input type="text" name="UserName" placeholder="UserName"><br>
         <input type="text" placeholder="FirstName" name="FirstName"><br>
-        <input type="password" placeholder="password" name="Password"><br>
+        <input type="text" placeholder="password" name="Password"><br>
         
     
 

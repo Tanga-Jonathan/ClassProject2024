@@ -3,26 +3,49 @@
 
 require_once 'con_to_db.php';
 
-$query = "INSERT INTO clients (UserName, FirstName) VALUES (?, ?)";
-$que = $connect->prepare($query);
+$query = "INSERT INTO clients (UserName, FirstName, Password) VALUES (?, ?, ?)";
 
+$preparedStat = mysqli_prepare($connect, $query);
+if (!$preparedStat){
+    die("Prepare failed: ". mysqli_error($connect));
+}
+//bind
+$User = $_POST["UserName"];
+$First = $_POST["FirstName"];
+$pass = $_POST["Password"];
 
-// bind statement
-$val = "Kamajo";
-$val2 = "Tanga";
+mysqli_stmt_bind_param($preparedStat,"sss",$pass,$First,$User);
 
-$que->bind_param("ss",$val, $val2);
+// execute
 
-//execute statement
-$que->execute();
-if ($que->affected_rows > 0){
-    echo "Record entered";
+if(mysqli_stmt_execute($preparedStat)){
+echo "success";
 }
 else{
-    echo "error " . $que->error;
+    die("execute fail" . mysqli_error($connect));
 }
-$que->close();
-$connect->close();
+// $que = $connect->prepare($query);
+
+
+// // bind statement
+// $val = "Kamajo";
+// $val2 = "Tanga";
+
+// $que->bind_param("ss",$val, $val2);
+
+// //execute statement
+// $que->execute();
+// if ($que->affected_rows > 0){
+//     echo "Record entered";
+// }
+// else{
+//     echo "error " . $que->error;
+// }
+// $que->close();
+// $connect->close();
+
+
+
 
 ?>
 
